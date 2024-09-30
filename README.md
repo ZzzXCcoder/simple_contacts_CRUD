@@ -15,7 +15,7 @@
    ```bash
    sudo nano /etc/nginx/sites-available/default
 
-   
+   и измените location
    location    /{
        proxy_pass         http://127.0.0.1:5000;
        proxy_http_version 1.1;
@@ -33,17 +33,17 @@ dotnet contacts_CRUD.dll
 
 Запуск через Docker
 В папке с опубликованным приложением создайте файл Dockerfile с содержимым:
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+   FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
-WORKDIR /app
-
-COPY . .
-
-ENV ConnectionStrings__DefaultConnection="Data Source=/app/Contacts.db"
-
-EXPOSE 5000
-
-ENTRYPOINT ["dotnet", "contacts_CRUD.dll"]
+   WORKDIR /app
+   
+   COPY . .
+   
+   ENV ConnectionStrings__DefaultConnection="Data Source=/app/Contacts.db"
+   
+   EXPOSE 5000
+   
+   ENTRYPOINT ["dotnet", "contacts_CRUD.dll"]
 
 Соберите образ Docker:
 sudo docker build -t <названиербраза> .
