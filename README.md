@@ -31,8 +31,11 @@ sudo systemctl restart nginx
 Для запуска опубликованного приложения используй команду:
 dotnet contacts_CRUD.dll
 
-Запуск через Docker
+## Запуск через Docker
+
 В папке с опубликованным приложением создайте файл Dockerfile с содержимым:
+
+
    FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
    WORKDIR /app
@@ -46,8 +49,10 @@ dotnet contacts_CRUD.dll
    ENTRYPOINT ["dotnet", "contacts_CRUD.dll"]
 
 Соберите образ Docker:
+
 sudo docker build -t <названиербраза> .
 
 
 Запустите контейнер:
+
 sudo docker run -d -p 8000:80 --name contacts-api-container <названиербраза>
